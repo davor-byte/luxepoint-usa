@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxepoint USA | Elegancia Urbana Premium</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <!-- Iconos de FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- BARRA DE NAVEGACIÓN (NAVBAR LIMPIA) -->
+    <header class="navbar">
+        <div class="nav-left">
+            <div class="menu-hamburguesa">
+                <i class="fa-solid fa-bars icon-menu"></i>
+                <div class="dropdown-categorias">
+                    <a href="#novedades" onclick="filtrarCategoria('todos')">Todas las Colecciones</a>
+                    <a href="#novedades" onclick="filtrarCategoria('carteras')">Carteras</a>
+                    <a href="#novedades" onclick="filtrarCategoria('perfumes')">Perfumes Hombre</a>
+                    <a href="#novedades" onclick="filtrarCategoria('perfumes_mujer')">Perfumes Mujer</a>
+                    <a href="#novedades" onclick="filtrarCategoria('relojes')">Relojes</a>
+                    <a href="#novedades" onclick="filtrarCategoria('termos')">Termos</a>
+                    <a href="#novedades" onclick="filtrarCategoria('zapatillas')">Zapatillas</a>
+                </div>
+            </div>
+            <nav class="nav-links-left">
+                <a href="#categorias">Novedades</a>
+            </nav>
+        </div>
+
+        <!-- Centro: Logo de la tienda -->
+        <a href="#" class="logo-link">
+            <img src="img/luxepoint.png" alt="Luxepoint USA Logo" class="logo-img">
+        </a>
+
+        <!-- Derecha: Únicamente el icono del Carrito -->
+        <div class="nav-icons">
+            <a href="#" class="icon" id="cart-btn">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span class="badge">0</span>
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO BANNER -->
+    <section class="hero"
+        style="background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('img/Fondo.png') no-repeat center center/cover; height: 85vh; display: flex; justify-content: center; align-items: center; text-align: center;">
+        <div class="hero-content">
+            <h1
+                style="font-size: 56px; font-weight: 800; margin-bottom: 20px; text-transform: uppercase; letter-spacing: -2px; line-height: 1.1; color: #001F3F !important;">
+                Estilo que Define. <br>Lujo que Inspira.
+            </h1>
+            <p
+                style="font-size: 19px; font-weight: 600; margin-bottom: 35px; max-width: 600px; margin-left: auto; margin-right: auto; color: #111111 !important;">
+                Descubre la fusión perfecta entre la elegancia premium y el espíritu urbano de USA.
+            </p>
+            <a href="#categorias" class="btn-primary">Explorar Colección</a>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE CATEGORÍAS -->
+    <section id="categorias" class="categorias-section">
+        <h2 class="section-title">Nuestras Líneas</h2>
+        <div class="categorias-grid">
+            <div class="categoria-card cat-carteras" onclick="filtrarCategoria('carteras')">
+                <h3>Carteras</h3>
+            </div>
+            <div class="categoria-card cat-perfumes" onclick="filtrarCategoria('perfumes')">
+                <h3>Perfumes Hombre</h3>
+            </div>
+            <div class="categoria-card cat-perfumes-mujer" onclick="filtrarCategoria('perfumes_mujer')">
+                <h3>Perfumes Mujer</h3>
+            </div>
+            <div class="categoria-card cat-relojes" onclick="filtrarCategoria('relojes')">
+                <h3>Relojes</h3>
+            </div>
+            <div class="categoria-card cat-termos" onclick="filtrarCategoria('termos')">
+                <h3>Termos</h3>
+            </div>
+            <div class="categoria-card cat-zapatillas" onclick="filtrarCategoria('zapatillas')">
+                <h3>Zapatillas</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN DE PRODUCTOS (CATÁLOGO) -->
+    <section id="novedades" class="productos-section">
+        <h2 class="section-title">Catálogo Luxepoint</h2>
+
+        <div class="productos-grid" id="contenedor-productos">
+
+            <!-- 1. CARTERAS -->
+            <div class="producto-card" data-categoria="carteras">
+                <div class="producto-img">
+                    <img src="img/carteras/Cartera intensamente reversible.jpeg" alt="Cartera Intensamente">
+                    <span class="tag">Nuevo</span>
+                </div>
+                <div class="producto-info">
+                    <h4>Cartera Intensamente Reversible</h4>
+                    <p class="precio">S/. 180.00</p>
+                    <p class="stock">Disponibles: <span>5</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="carteras">
+                <div class="producto-img">
+                    <img src="img/carteras/Cartera Victoria secret.jpeg" alt="Victoria Secret">
+                    <span class="tag">Exclusive</span>
+                </div>
+                <div class="producto-info">
+                    <h4>Cartera Victoria's Secret Black</h4>
+                    <p class="precio">S/. 240.00</p>
+                    <p class="stock">Disponibles: <span>4</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="carteras">
+                <div class="producto-img">
+                    <img src="img/carteras/Cartera_jasonWU_Ngr.jpeg" alt="Jason WU">
+                </div>
+                <div class="producto-info">
+                    <h4>Cartera Jason WU Noir</h4>
+                    <p class="precio">S/. 220.00</p>
+                    <p class="stock">Disponibles: <span>3</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="carteras">
+                <div class="producto-img">
+                    <img src="img/carteras/Cartera_tommy_roja.jpeg" alt="Tommy Hilfiger">
+                </div>
+                <div class="producto-info">
+                    <h4>Cartera Tommy Hilfiger Red</h4>
+                    <p class="precio">S/. 210.00</p>
+                    <p class="stock">Disponibles: <span>6</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="carteras">
+                <div class="producto-img">
+                    <img src="img/carteras/Crossbody  Calvin Klein.jpeg" alt="Calvin Klein">
+                </div>
+                <div class="producto-info">
+                    <h4>Crossbody Calvin Klein Monogram</h4>
+                    <p class="precio">S/. 250.00</p>
+                    <p class="stock">Disponibles: <span>5</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- 2. PERFUMES HOMBRE -->
+            <div class="producto-card" data-categoria="perfumes">
+                <div class="producto-img">
+                    <img src="img/perfumes/Perfume Ralph Lauren 100 ML.jpeg" alt="Ralph Lauren">
+                </div>
+                <div class="producto-info">
+                    <h4>Perfume Ralph Lauren 100 ML</h4>
+                    <p class="precio">S/. 380.00</p>
+                    <p class="stock">Disponibles: <span>8</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes">
+                <div class="producto-img">
+                    <img src="img/perfumes/Set perfume Polo Club 90 ML.jpeg" alt="Polo Club">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Perfume Polo Club 90 ML</h4>
+                    <p class="precio">S/. 290.00</p>
+                    <p class="stock">Disponibles: <span>4</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes">
+                <div class="producto-img">
+                    <img src="img/perfumes/Set perfume Ralph Lauren de 15 ML.jpeg" alt="Set Ralph Lauren">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Perfume Ralph Lauren 15 ML Trio</h4>
+                    <p class="precio">S/. 220.00</p>
+                    <p class="stock">Disponibles: <span>6</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes">
+                <div class="producto-img">
+                    <img src="img/perfumes/Set perfume Valentino 6 ML.jpeg" alt="Valentino">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Perfume Valentino 6 ML</h4>
+                    <p class="precio">S/. 190.00</p>
+                    <p class="stock">Disponibles: <span>5</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- 3. PERFUMES MUJER -->
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/Angel_gold_VS.jpeg" alt="Angel Gold">
+                    <span class="tag">Best Seller</span>
+                </div>
+                <div class="producto-info">
+                    <h4>Victoria's Secret Angel Gold</h4>
+                    <p class="precio">S/. 160.00</p>
+                    <p class="stock">Disponibles: <span>10</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_angelCake_Cream.jpeg" alt="Angel Cake">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Angel Cake & Cream</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>8</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_aqua_kiss.jpeg" alt="Aqua Kiss">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Aqua Kiss Body Mist</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>12</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_bare_vanilla.jpeg" alt="Bare Vanilla">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Bare Vanilla Mist</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>15</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_glazedPetals_berries.jpeg" alt="Glazed Petals">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Glazed Petals & Berries</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>7</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_goldenApreicot_honey.jpeg" alt="Golden Apricot">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Golden Apricot & Honey</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>6</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_love_spell.jpeg" alt="Love Spell">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Love Spell Classic</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>14</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_pure_seducction.jpeg" alt="Pure Seduction">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Pure Seduction Mist</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>10</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="perfumes_mujer">
+                <div class="producto-img">
+                    <img src="img/perfumes_mujer/VS_whippedMilk_Sugar.jpeg" alt="Whipped Milk">
+                </div>
+                <div class="producto-info">
+                    <h4>VS Whipped Milk & Sugar</h4>
+                    <p class="precio">S/. 95.00</p>
+                    <p class="stock">Disponibles: <span>8</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- 4. RELOJES -->
+            <div class="producto-card" data-categoria="relojes">
+                <div class="producto-img">
+                    <img src="img/relojes/polo_plata.jpeg" alt="Polo Plata">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Reloj Polo Plata & Pulseras</h4>
+                    <p class="precio">S/. 320.00</p>
+                    <p class="stock">Disponibles: <span>4</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="relojes">
+                <div class="producto-img">
+                    <img src="img/relojes/polo_vintage.jpeg" alt="Polo Vintage">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Relojes Dúo Polo Vintage Gold</h4>
+                    <p class="precio">S/. 450.00</p>
+                    <p class="stock">Disponibles: <span>2</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="relojes">
+                <div class="producto-img">
+                    <img src="img/relojes/Reloj_polo_negro.jpeg" alt="Polo Negro">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Reloj Polo Club Black Edition</h4>
+                    <p class="precio">S/. 310.00</p>
+                    <p class="stock">Disponibles: <span>5</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="relojes">
+                <div class="producto-img">
+                    <img src="img/relojes/reloj_pulsera plata.jpeg" alt="Reloj Pulsera Plata">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Reloj Polo Silver & Gold Dúo</h4>
+                    <p class="precio">S/. 330.00</p>
+                    <p class="stock">Disponibles: <span>3</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="relojes">
+                <div class="producto-img">
+                    <img src="img/relojes/relol_con_cruz.jpeg" alt="Reloj con Cruz">
+                </div>
+                <div class="producto-info">
+                    <h4>Set Reloj Polo Gold con Cadena Cruz</h4>
+                    <p class="precio">S/. 340.00</p>
+                    <p class="stock">Disponibles: <span>3</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- 5. TERMOS -->
+            <div class="producto-card" data-categoria="termos">
+                <div class="producto-img">
+                    <img src="img/termos/OWA_celeste.jpeg" alt="OWA Celeste">
+                </div>
+                <div class="producto-info">
+                    <h4>Termo Owala Celeste Sky 40oz</h4>
+                    <p class="precio">S/. 140.00</p>
+                    <p class="stock">Disponibles: <span>8</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="termos">
+                <div class="producto-img">
+                    <img src="img/termos/ST_azul.jpeg" alt="Stanley Azul">
+                </div>
+                <div class="producto-info">
+                    <h4>Termo Stanley Quencher Navy Blue</h4>
+                    <p class="precio">S/. 190.00</p>
+                    <p class="stock">Disponibles: <span>6</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="termos">
+                <div class="producto-img">
+                    <img src="img/termos/ST_celeste_pastl.jpeg" alt="Stanley Pastel">
+                </div>
+                <div class="producto-info">
+                    <h4>Termo Stanley Pastel Sky</h4>
+                    <p class="precio">S/. 190.00</p>
+                    <p class="stock">Disponibles: <span>7</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="termos">
+                <div class="producto-img">
+                    <img src="img/termos/ST_crema.jpeg" alt="Stanley Crema">
+                </div>
+                <div class="producto-info">
+                    <h4>Termo Stanley Cream Edition</h4>
+                    <p class="precio">S/. 190.00</p>
+                    <p class="stock">Disponibles: <span>5</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="termos">
+                <div class="producto-img">
+                    <img src="img/termos/ST_rosa.jpeg" alt="Stanley Rosa">
+                </div>
+                <div class="producto-info">
+                    <h4>Termo Stanley Sunset Rose</h4>
+                    <p class="precio">S/. 190.00</p>
+                    <p class="stock">Disponibles: <span>9</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="termos">
+                <div class="producto-img">
+                    <img src="img/termos/ST_verde_claro.jpeg" alt="Stanley Verde">
+                </div>
+                <div class="producto-info">
+                    <h4>Termo Stanley Mint Green</h4>
+                    <p class="precio">S/. 190.00</p>
+                    <p class="stock">Disponibles: <span>4</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <!-- 6. ZAPATILLAS -->
+            <div class="producto-card" data-categoria="zapatillas">
+                <div class="producto-img">
+                    <img src="img/zapatillas/LaCoste_Base.jpeg" alt="Lacoste Base">
+                    <span class="tag">Exclusive</span>
+                </div>
+                <div class="producto-info">
+                    <h4>Zapatillas Lacoste White Classic</h4>
+                    <p class="precio">S/. 380.00</p>
+                    <p class="stock">Disponibles: <span>5</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="zapatillas">
+                <div class="producto-img">
+                    <img src="img/zapatillas/Nike_p6000.jpeg" alt="Nike P6000">
+                </div>
+                <div class="producto-info">
+                    <h4>Zapatillas Nike P-6000 Cyan/Orange</h4>
+                    <p class="precio">S/. 420.00</p>
+                    <p class="stock">Disponibles: <span>3</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="zapatillas">
+                <div class="producto-img">
+                    <img src="img/zapatillas/Nike_zoom_blanca.jpeg" alt="Nike Zoom">
+                </div>
+                <div class="producto-info">
+                    <h4>Zapatillas Nike Zoom Vomero White</h4>
+                    <p class="precio">S/. 450.00</p>
+                    <p class="stock">Disponibles: <span>4</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+            <div class="producto-card" data-categoria="zapatillas">
+                <div class="producto-img">
+                    <img src="img/zapatillas/TH_ADA.jpeg" alt="Tommy Hilfiger ADA">
+                </div>
+                <div class="producto-info">
+                    <h4>Zapatillas Tommy Hilfiger ADA Urban</h4>
+                    <p class="precio">S/. 360.00</p>
+                    <p class="stock">Disponibles: <span>6</span> u.</p>
+                    <button class="btn-add-cart">Añadir al Carrito</button>
+                </div>
+            </div>
+
+        </div> <!-- FIN DE PRODUCTOS-GRID -->
+    </section>
+
+
+    </div> <!-- FIN DE PRODUCTOS-GRID -->
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contacto">
+        <div class="redes-sociales">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/luxepointusa?igsh=NDJsa3FtOGRhZnVy" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <!-- WhatsApp -->
+    <a href="https://wa.me/51978398707?text=Hola%20Luxepoint%20USA,%20deseo%20realizar%20una%20consulta" target="_blank" rel="noopener noreferrer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@TU_USUARIO" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 LUXEPOINT USA. Todos los derechos reservados.
+        </div>
+    </footer>
+
+    <!-- MODAL / DRAWER DEL CARRITO DE COMPRAS -->
+    <div id="modal-carrito" class="modal-carrito">
+        <div class="contenido-carrito">
+            <div class="header-carrito">
+                <h3>Tu Carrito Luxepoint</h3>
+                <span class="cerrar-carrito" id="cerrar-carrito">&times;</span>
+            </div>
+
+            <div class="body-carrito" id="items-carrito">
+                <p class="carrito-vacio">Tu carrito está vacío.</p>
+            </div>
+
+            <div class="footer-carrito">
+                <div class="total-contenedor">
+                    <span>Total:</span>
+                    <strong id="total-carrito">S/. 0.00</strong>
+                </div>
+                <button class="btn-checkout" id="btn-ir-checkout">Proceder al Pago</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL DE CHECKOUT / DATOS DE ENVÍO Y PAGO -->
+    <div id="modal-checkout" class="modal-carrito">
+        <div class="contenido-carrito" style="overflow-y: auto;">
+            <div class="header-carrito">
+                <h3>Datos de Envío y Pago</h3>
+                <span class="cerrar-carrito" id="cerrar-checkout">&times;</span>
+            </div>
+
+            <form id="form-checkout" class="form-checkout">
+                <h4>1. Información de Contacto</h4>
+                <input type="text" id="cliente-nombre" placeholder="Nombres y Apellidos *" required>
+                <input type="text" id="cliente-dni" placeholder="DNI / CE *" required>
+                <input type="tel" id="cliente-telefono" placeholder="Teléfono / WhatsApp *" required>
+                <input type="email" id="cliente-correo" placeholder="Correo Electrónico">
+
+                <h4>2. Dirección de Entrega</h4>
+                <input type="text" id="cliente-direccion" placeholder="Dirección Exacta (Av, Calle, N°) *" required>
+                <input type="text" id="cliente-distrito" placeholder="Distrito / Provincia *" required>
+                <input type="text" id="cliente-referencia" placeholder="Referencia (opcional)">
+
+                <h4>3. Método de Pago</h4>
+                <div class="metodos-pago">
+                    <label><input type="radio" name="pago" value="Yape/Plin" checked> Yape / Plin</label>
+                    <label><input type="radio" name="pago" value="Transferencia"> Transferencia BCP / BBVA</label>
+                    <label><input type="radio" name="pago" value="Tarjeta"> Tarjeta Crédito / Débito</label>
+                </div>
+
+                <div class="footer-carrito" style="margin-top: 20px;">
+                    <button type="submit" class="btn-checkout">Confirmar Pedido por WhatsApp</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+
+</html>
