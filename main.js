@@ -1,16 +1,33 @@
+// ==========================================
+// CONFIGURACIÓN GLOBAL
+// ==========================================
+
 // URL DE TU APPS SCRIPT
 const URL_API_GOOGLE_SHEETS = "https://script.google.com/macros/s/AKfycbzxpf_0OB3jC3HuIweE4xRiWdw1QP17lCoAL-DaE9OLGA2jQTx80kRACBkjxQSZ_G6DsQ/exec";
 
 // NÚMERO DE WHATSAPP (Perú)
 const NUMERO_WHATSAPP = "51978398707";
 
+// MERCADO PAGO - PUBLIC KEY
+const PUBLIC_KEY_MERCADOPAGO = "APP_USR-80f6396e-c6c7-420b-83b6-5f56cb015040";
+
+// Inicializar Mercado Pago (Si el SDK se cargó correctamente en el <head>)
+let mp = null;
+if (typeof MercadoPago !== 'undefined') {
+    mp = new MercadoPago(PUBLIC_KEY_MERCADOPAGO, { locale: 'es-PE' });
+}
+
 let carrito = JSON.parse(localStorage.getItem('luxepoint_carrito')) || [];
+
+// ==========================================
+// INICIALIZACIÓN Y EVENT LISTENERS
+// ==========================================
 
 document.addEventListener('DOMContentLoaded', () => {
     actualizarCarritoUI();
     sincronizarStockDesdeGoogleSheets();
 
-    // Modales y Eventos
+    // Modales y Eventos UI
     const cartBtn = document.getElementById('cart-btn');
     const modalCarrito = document.getElementById('modal-carrito');
     const cerrarCarrito = document.getElementById('cerrar-carrito');
@@ -50,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.target === modalCheckout) modalCheckout.classList.remove('active');
     });
 
+    // Agregar al carrito mediante eventos delegados
     document.addEventListener('click', (e) => {
         if (e.target && e.target.classList.contains('btn-add-cart')) {
             const tarjeta = e.target.closest('.producto-card');
@@ -57,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const producto = {
                 id: tarjeta.querySelector('h4').innerText.trim(),
                 nombre: tarjeta.querySelector('h4').innerText.trim(),
-                precio: parseFloat(tarjeta.querySelector('.precio').innerText.replace('S/.', '').trim()),
+                precio: parseFloat(tarjeta.querySelector('.precio').innerText.replace('S/.', '').replace('S/', '').trim()),
                 imagen: tarjeta.querySelector('.producto-img img').getAttribute('src'),
                 cantidad: 1
             };
@@ -74,7 +92,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// CONSULTAR STOCK Y PRECIOS DESDE GOOGLE SHEETS AL CARGAR LA PÁGINA
+// ==========================================
+// CONSULTAR STOCK Y PRECIOS DESDE GOOGLE SHEETS
+// ==========================================
+
 async function sincronizarStockDesdeGoogleSheets() {
     if (!URL_API_GOOGLE_SHEETS || URL_API_GOOGLE_SHEETS.includes("PEGA_AQUI")) return;
 
@@ -96,13 +117,13 @@ async function sincronizarStockDesdeGoogleSheets() {
             if (dataSheets[titulo] !== undefined) {
                 const infoProducto = dataSheets[titulo];
 
-                // 1. ACTUALIZAR PRECIO DESDE EL EXCEL
+                // 1. Actualizar Precio
                 if (infoProducto.precio !== undefined && infoProducto.precio !== "" && precioElemento) {
                     const nuevoPrecio = parseFloat(infoProducto.precio);
                     precioElemento.innerText = `S/. ${nuevoPrecio.toFixed(2)}`;
                 }
 
-                // 2. ACTUALIZAR STOCK DESDE EL EXCEL
+                // 2. Actualizar Stock
                 if (stockSpan && infoProducto.stock !== undefined) {
                     const stockDisponible = parseInt(infoProducto.stock);
                     stockSpan.innerText = stockDisponible;
@@ -131,6 +152,10 @@ async function sincronizarStockDesdeGoogleSheets() {
         console.error("Error al consultar Google Sheets:", error);
     }
 }
+
+// ==========================================
+// FUNCIONES DEL CARRITO DE COMPRAS
+// ==========================================
 
 function filtrarCategoria(categoria) {
     const seccionNovedades = document.getElementById('novedades');
@@ -225,7 +250,11 @@ function actualizarCarritoUI() {
     }
 }
 
-// DESCONTAR STOCK EN GOOGLE SHEETS Y ENVIAR WHATSAPP
+// ==========================================
+// PROCESAMIENTO DE PEDIDOS Y PAGOS
+// ==========================================
+
+// 🟢 OPCIÓN 1: PEDIDO POR WHATSAPP (Yape / Plin / Transferencia)
 async function enviarPedidoWhatsApp() {
     const nombre = document.getElementById('cliente-nombre').value.trim();
     const dni = document.getElementById('cliente-dni').value.trim();
@@ -234,9 +263,11 @@ async function enviarPedidoWhatsApp() {
     const direccion = document.getElementById('cliente-direccion').value.trim();
     const distrito = document.getElementById('cliente-distrito').value.trim();
     const referencia = document.getElementById('cliente-referencia').value.trim() || "Sin referencia";
-    const metodoPago = document.querySelector('input[name="pago"]:checked').value;
+    
+    const pagoChecked = document.querySelector('input[name="pago"]:checked');
+    const metodoPago = pagoChecked ? pagoChecked.value : "No seleccionado";
 
-    // Descontar stock en Google Sheets
+    // Actualizar stock en Google Sheets
     if (URL_API_GOOGLE_SHEETS) {
         try {
             await fetch(URL_API_GOOGLE_SHEETS, {
@@ -282,4 +313,18 @@ async function enviarPedidoWhatsApp() {
 
     const modalCheckout = document.getElementById('modal-checkout');
     if (modalCheckout) modalCheckout.classList.remove('active');
+}
+
+// 💳 OPCIÓN 2: PAGAR CON MERCADO PAGO (TARJETA)
+async function pagarConMercadoPago() {
+    if (!carrito || carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+    }
+
+    const total = carrito.reduce((acc, item) => acc + (Number(item.precio) * Number(item.cantidad)), 0);
+
+    alert(`Iniciando conexión con Mercado Pago para cobrar S/. ${total.toFixed(2)}...\n\nSerás redirigido al formulario de pago.`);
+    
+    // Aquí puedes agregar la redirección a tu Link de Pago o la llamada a la Preferencia
 }
