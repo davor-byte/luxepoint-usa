@@ -504,10 +504,6 @@
         </div> <!-- FIN DE PRODUCTOS-GRID -->
     </section>
 
-
-    </div> <!-- FIN DE PRODUCTOS-GRID -->
-    </section>
-
     <!-- FOOTER -->
     <footer id="contacto">
         <div class="redes-sociales">
@@ -516,9 +512,9 @@
                 <i class="fa-brands fa-instagram"></i>
             </a>
             <!-- WhatsApp -->
-    <a href="https://wa.me/51978398707?text=Hola%20Luxepoint%20USA,%20deseo%20realizar%20una%20consulta" target="_blank" rel="noopener noreferrer">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+            <a href="https://wa.me/51978398707?text=Hola%20Luxepoint%20USA,%20deseo%20realizar%20una%20consulta" target="_blank" rel="noopener noreferrer">
+                <i class="fa-brands fa-whatsapp"></i>
+            </a>
             <!-- TikTok -->
             <a href="https://www.tiktok.com/@TU_USUARIO" target="_blank" rel="noopener noreferrer">
                 <i class="fa-brands fa-tiktok"></i>
@@ -571,15 +567,24 @@
                 <input type="text" id="cliente-distrito" placeholder="Distrito / Provincia *" required>
                 <input type="text" id="cliente-referencia" placeholder="Referencia (opcional)">
 
-                <h4>3. Método de Pago</h4>
+                <h4>3. Método de Pago Preferido</h4>
                 <div class="metodos-pago">
                     <label><input type="radio" name="pago" value="Yape/Plin" checked> Yape / Plin</label>
                     <label><input type="radio" name="pago" value="Transferencia"> Transferencia BCP / BBVA</label>
-                    <label><input type="radio" name="pago" value="Tarjeta"> Tarjeta Crédito / Débito</label>
+                    <label><input type="radio" name="pago" value="Tarjeta"> Tarjeta Crédito / Débito (Mercado Pago)</label>
                 </div>
 
-                <div class="footer-carrito" style="margin-top: 20px;">
-                    <button type="submit" class="btn-checkout">Confirmar Pedido por WhatsApp</button>
+                <!-- OPCIONES DE PAGO DOBLE (OPCIÓN B) -->
+                <div class="opciones-pago-container" style="display: flex; flex-direction: column; gap: 10px; margin-top: 20px;">
+                    <!-- Botón 1: Confirmar por WhatsApp -->
+                    <button type="submit" class="btn-pago-whatsapp" style="background-color: #25D366; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;">
+                        <i class="fab fa-whatsapp" style="font-size: 18px;"></i> Pagar por WhatsApp (Yape / Plin)
+                    </button>
+
+                    <!-- Botón 2: Tarjeta con Mercado Pago -->
+                    <button type="button" onclick="pagarConMercadoPago()" class="btn-pago-mercadopago" style="background-color: #009EE3; color: white; border: none; padding: 12px; border-radius: 6px; font-weight: bold; font-size: 15px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%;">
+                        <i class="fas fa-credit-card" style="font-size: 18px;"></i> Pagar con Tarjeta (Mercado Pago)
+                    </button>
                 </div>
             </form>
         </div>
