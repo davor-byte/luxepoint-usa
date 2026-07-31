@@ -315,16 +315,72 @@ async function enviarPedidoWhatsApp() {
     if (modalCheckout) modalCheckout.classList.remove('active');
 }
 
-// 💳 OPCIÓN 2: PAGAR CON MERCADO PAGO (TARJETA)
+// 💳 OPCIÓN 2: SOLICITAR LINK DE PAGO MERCADO PAGO VÍA WHATSAPP
 async function pagarConMercadoPago() {
     if (!carrito || carrito.length === 0) {
-        alert("Tu carrito está vacío.");
+        alert("Tu carrito está vacío. Agrega productos antes de realizar el pedido.");
         return;
     }
 
-    const total = carrito.reduce((acc, item) => acc + (Number(item.precio) * Number(item.cantidad)), 0);
+    const nombre = document.getElementById('cliente-nombre').value.trim();
+    const dni = document.getElementById('cliente-dni').value.trim();
+    const telefono = document.getElementById('cliente-telefono').value.trim();
+    const correo = document.getElementById('cliente-correo').value.trim() || "No especificado";
+    const direccion = document.getElementById('cliente-direccion').value.trim();
+    const distrito = document.getElementById('cliente-distrito').value.trim();
+    const referencia = document.getElementById('cliente-referencia').value.trim() || "Sin referencia";
 
-    alert(`Iniciando conexión con Mercado Pago para cobrar S/. ${total.toFixed(2)}...\n\nSerás redirigido al formulario de pago.`);
-    
-    // Aquí puedes agregar la redirección a tu Link de Pago o la llamada a la Preferencia
+    // Validar que los campos obligatorios estén llenos
+    if (!nombre || !dni || !telefono || !direccion || !distrito) {
+        alert("Por favor completa los campos obligatorios de envío (Nombre, DNI, Teléfono, Dirección y Distrito).");
+        return;
+    }
+
+    // Actualizar stock en Google Sheets
+    if (URL_API_GOOGLE_SHEETS) {
+        try {
+            await fetch(URL_API_GOOGLE_SHEETS, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ items: carrito })
+            });
+        } catch (error) {
+            console.error("Error al actualizar stock:", error);
+        }
+    }
+
+    let mensaje = `*NUEVO PEDIDO - SOLICITUD DE PAGO CON TARJETA (MERCADO PAGO)*%0A%0A`;
+    mensaje += `*DATOS DEL CLIENTE:*%0A`;
+    mensaje += `👤 *Nombre:* ${nombre}%0A`;
+    mensaje += `🪪 *DNI/CE:* ${dni}%0A`;
+    mensaje += `📞 *Teléfono:* ${telefono}%0A`;
+    mensaje += `📧 *Correo:* ${correo}%0A%0A`;
+
+    mensaje += `*DIRECCIÓN DE ENTREGA:*%0A`;
+    mensaje += `📍 *Dirección:* ${direccion}%0A`;
+    mensaje += `🏙️ *Distrito/Prov:* ${distrito}%0A`;
+    mensaje += `📌 *Referencia:* ${referencia}%0A%0A`;
+
+    mensaje += `💳 *Método de Pago:* Tarjeta Crédito / Débito (Mercado Pago)%0A%0A`;
+
+    mensaje += `*DETALLE DEL PEDIDO:*%0A`;
+    let totalPrecio = 0;
+    carrito.forEach((item, index) => {
+        const subtotal = item.precio * item.cantidad;
+        totalPrecio += subtotal;
+        mensaje += `${index + 1}. ${item.nombre} (x${item.cantidad}) - S/. ${subtotal.toFixed(2)}%0A`;
+    });
+
+    mensaje += `%0A💰 *TOTAL A PAGAR: S/. ${totalPrecio.toFixed(2)}*%0A%0A`;
+    mensaje += `_Hola, deseo pagar con tarjeta de crédito/débito. Por favor envíenme el link de pago de Mercado Pago para concretar mi compra._`;
+
+    const url = `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
+    window.open(url, '_blank');
+
+    carrito = [];
+    guardarYActualizar();
+
+    const modalCheckout = document.getElementById('modal-checkout');
+    if (modalCheckout) modalCheckout.classList.remove('active');
 }
