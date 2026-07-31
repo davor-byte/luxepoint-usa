@@ -663,3 +663,131 @@ footer {
     transform: translateY(-4px); /* Eleva ligeramente el ícono */
     box-shadow: 0 4px 12px rgba(243, 156, 18, 0.4); /* Resplandor elegante */
 }
+
+/* ==========================================
+   DISEÑO RESPONSIVO Y ADAPTACIÓN MÓVIL
+   ========================================== */
+
+@media (max-width: 768px) {
+
+    /* 1. Header y Navbar */
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .logo-img {
+        max-height: 40px; /* Logo ajustado para móviles */
+    }
+
+    .nav-links-left {
+        display: none; /* Ocultar links secundarios en celular */
+    }
+
+    /* 2. Hero Banner */
+    .hero {
+        height: 70vh !important;
+        padding: 0 15px;
+    }
+
+    .hero-content h1 {
+        font-size: 32px !important; /* Texto principal más legible */
+        line-height: 1.2;
+    }
+
+    .hero-content p {
+        font-size: 15px !important;
+        margin-bottom: 25px;
+    }
+
+    .btn-primary {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+
+    /* 3. Rejilla de Categorías */
+    .categorias-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columnas en móvil */
+        gap: 10px;
+        padding: 0 10px;
+    }
+
+    .categoria-card {
+        height: 120px;
+    }
+
+    .categoria-card h3 {
+        font-size: 15px;
+    }
+
+    /* 4. Catálogo de Productos */
+    .productos-section {
+        padding: 30px 15px;
+    }
+
+    .section-title {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en móvil */
+        gap: 12px;
+    }
+
+    .producto-card {
+        padding: 10px;
+    }
+
+    .producto-card h4 {
+        font-size: 14px;
+        height: 38px; /* Mantener altura uniforme */
+        overflow: hidden;
+    }
+
+    .precio {
+        font-size: 16px;
+    }
+
+    .stock {
+        font-size: 11px;
+    }
+
+    .btn-add-cart {
+        padding: 8px 10px;
+        font-size: 12px;
+    }
+
+    /* 5. Modales (Carrito y Checkout) */
+    .contenido-carrito {
+        width: 100% !important; /* Ocupa todo el ancho en celular */
+        max-width: 100%;
+        border-radius: 0;
+        height: 100vh;
+    }
+
+    .opciones-pago-container button {
+        padding: 14px !important;
+        font-size: 14px !important;
+    }
+
+    /* 6. Modal Sorteo */
+    .modal-sorteo-card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .modal-sorteo-card h2 {
+        font-size: 18px;
+    }
+
+    .modal-sorteo-card p {
+        font-size: 13px;
+    }
+}
+
+/* Pantallas muy pequeñas (menos de 400px) */
+@media (max-width: 400px) {
+    .productos-grid {
+        grid-template-columns: 1fr; /* 1 producto por fila en pantallas pequeñas */
+    }
+}
