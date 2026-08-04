@@ -11,7 +11,24 @@
     <!-- SDK Mercado Pago -->
     <script src="https://sdk.mercadopago.com/js/v2"></script>
 </head>
+<!-- BANNER POPUP DEL SORTEO (50 SEGUNDOS) -->
+<div id="modal-sorteo" class="modal-sorteo-overlay">
+    <div class="modal-sorteo-card">
+        <button class="cerrar-sorteo" id="btn-cerrar-sorteo">&times;</button>
+        <div class="sorteo-badge">🎁 ¡PROMO EXCLUSIVA!</div>
+        <h2>¡Participa en nuestro Sorteo Luxe!</h2>
+        <p>Por la compra de <strong>cualquier producto</strong> en nuestra tienda, entras automáticamente al sorteo oficial de esta temporada.</p>
+        
+        <div class="timer-container">
+            <span>Este aviso se cerrará en: <strong id="timer-sorteo">50</strong>s</span>
+            <div class="progress-bar-bg">
+                <div class="progress-bar-fill" id="progress-fill"></div>
+            </div>
+        </div>
 
+        <button onclick="cerrarSorteoModal()" class="btn-sorteo-action">¡Comprar y Participar Ahora!</button>
+    </div>
+</div>
 <body>
 
     <!-- BARRA DE NAVEGACIÓN (NAVBAR LIMPIA) -->
