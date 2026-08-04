@@ -384,3 +384,53 @@ async function pagarConMercadoPago() {
     const modalCheckout = document.getElementById('modal-checkout');
     if (modalCheckout) modalCheckout.classList.remove('active');
 }
+// ==========================================
+// AVISO TEMPORIZADO DE SORTEO (50 SEGUNDOS)
+// ==========================================
+
+let tiempoRestanteSorteo = 50;
+let intervaloSorteo = null;
+
+function iniciarSorteoAviso() {
+    const modal = document.getElementById('modal-sorteo');
+    const timerElem = document.getElementById('timer-sorteo');
+    const progressFill = document.getElementById('progress-fill');
+    const btnCerrar = document.getElementById('btn-cerrar-sorteo');
+
+    if (!modal) return;
+
+    // Mostrar el modal tras 1.5 segundos de cargar la página
+    setTimeout(() => {
+        modal.classList.add('active');
+
+        intervaloSorteo = setInterval(() => {
+            tiempoRestanteSorteo--;
+            if (timerElem) timerElem.innerText = tiempoRestanteSorteo;
+
+            // Actualizar la barra de progreso proporcionalmente
+            if (progressFill) {
+                const porcentaje = (tiempoRestanteSorteo / 50) * 100;
+                progressFill.style.width = `${porcentaje}%`;
+            }
+
+            if (tiempoRestanteSorteo <= 0) {
+                cerrarSorteoModal();
+            }
+        }, 1000);
+    }, 1500);
+
+    if (btnCerrar) {
+        btnCerrar.addEventListener('click', cerrarSorteoModal);
+    }
+}
+
+function cerrarSorteoModal() {
+    const modal = document.getElementById('modal-sorteo');
+    if (modal) modal.classList.remove('active');
+    if (intervaloSorteo) clearInterval(intervaloSorteo);
+}
+
+// Ejecutar el temporizador cuando se carga la página
+document.addEventListener('DOMContentLoaded', () => {
+    iniciarSorteoAviso();
+});
