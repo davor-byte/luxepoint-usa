@@ -1,0 +1,16 @@
+{
+  "name": "luxepoint-usa",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Catálogo estático de Luxepoint USA",
+  "scripts": {
+    "test": "node --test tests/*.test.cjs",
+    "check": "node --check main.js && node --check commerce.js"
+  },
+  "devDependencies": {
+    "jsdom": "30.0.1"
+  },
+  "engines": {
+    "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+  }
+}
